@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block title %}
+    <title>Codes</title>
+    {% endblock %}
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
+    <meta name="generator" content="Hugo 0.82.0" />
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/" />
+
+    <!-- Bootstrap core CSS -->
+    {% load static %}
+    <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet" />
+    {% block head %}
+    {% endblock %}
+
+</head>
+
+<body>
+    {% block sidebar %}
+    <header class="p-3 bg-dark text-white">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <img class="bi me-2" src="{% static '/assets/brand/codes-logo-white.svg' %}" alt="" width="48"
+                        height="38">
+                </a>
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="{{request.path}}" class="nav-link px-2 text-secondary">Home</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">Courses</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">Content Collection</a></li>
+                </ul>
+
+                <div class="text-end">
+                    {% if user.is_authenticated %}
+                    <a class="btn btn-warning" href="{% url 'logout'%}?next={{request.path}}">Logout</a>
+                    {% else %}
+                    <a class="btn btn-outline-light me-2" href="{% url 'login'%}?next={{request.path}}">Login</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </header>
+    {% endblock %}
+    {% block content %}
+    <!-- default content text (typically empty) -->
+    {% endblock %}
+    {% block footer %}
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container">
+            <span class="text-muted">&copy; 2021 Codes</span>
+        </div>
+    </footer>
+    {% endblock %}
+</body>
+{% load static %}
+<script src="{% static '/assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+{% block script%}
+
+{% endblock %}
+
+</html>

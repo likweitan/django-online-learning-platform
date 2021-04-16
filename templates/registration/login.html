@@ -1,0 +1,50 @@
+{% extends "base_generic.html" %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% block head %}
+  {% load static %}
+  <link href="{% static 'signin.css' %}" rel="stylesheet" />
+  {% endblock %}
+  <!-- Custom styles for this template -->
+
+</head>
+{% block sidebar %}
+<!-- insert default navigation text for every page -->
+{% endblock %}
+{% block content %}
+
+<body class="text-center">
+  <main class="form-signin">
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %} {% load static %}
+      <img class="mb-4" src="{% static '/assets/brand/codes-logo.svg' %}" alt="" width="72" height="57" />
+      <h1 class="h3 mb-3 fw-normal">Sign In</h1>
+
+      <div class="form-floating">
+        <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150"
+          required="" id="id_username" class="form-control" placeholder="name@example.com" />
+        <label for="id_username">Email address</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" name="password" autocomplete="current-password" required="" id="id_password"
+          class="form-control" placeholder="Password" />
+        <label for="id_password">Password</label>
+      </div>
+
+      <input class="w-100 btn btn-lg btn-primary" type="submit" value="login" />
+      <input type="hidden" name="next" value="{{ next }}" />
+
+      <p class="mt-5 mb-3 text-muted">&copy; Codes 2021</p>
+    </form>
+    {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+      Your username and password didn't match. Please try again.
+    </div>
+    {% endif %}
+  </main>
+</body>
+{% endblock %}
+
+</html>
