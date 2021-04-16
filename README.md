@@ -1,1 +1,1 @@
-"# django-club" 
+# DJANGO WEBSITE
