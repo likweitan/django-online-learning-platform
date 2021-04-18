@@ -16,13 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from home.views import home_view
+from page.views import home_view
+from courses.views import courses_view, course_view, homeworks_view, homework_submission_view
 from user.views import login_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('user/', include('user.urls')),
-    path('', home_view),
+    path('', home_view, name='home'),
+    path('courses/', courses_view, name='courses'),
+    path('courses/<int:course_id>/', course_view, name='course'),
+    path('courses/<int:course_id>/homework/',
+         homeworks_view, name='homeworks'),
+    path('courses/<int:course_id>/homework/<int:homework_id>/',
+         homework_submission_view, name='homework_submission'),
 ]
 
 # Add Django site authentication urls (for login, logout, password management)
