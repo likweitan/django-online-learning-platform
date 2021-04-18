@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-=a382e8_wxcv0t5$&v^kw&hzv*!c%u!ak(7g@m$8fvino!^s0&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['server.railgun.codes', '192.168.0.119']
 
 
 # Application definition
@@ -39,7 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'page',
-    'courses'
+    'courses',
+
+
+    'crispy_forms',
+    'django_drf_filepond',
 ]
 
 MIDDLEWARE = [
@@ -108,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kuala_Lumpur'
 
 USE_I18N = True
 
@@ -137,3 +141,16 @@ LOGIN_REDIRECT_URL = ''
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+DJANGO_DRF_FILEPOND_UPLOAD_TMP = BASE_DIR / 'filepond-temp-uploads'
+
+DJANGO_DRF_FILEPOND_FILE_STORE_PATH = BASE_DIR / 'stored_uploads'
+
+
+MEDIA_DIR = BASE_DIR / 'media'
+# Media
+MEDIA_ROOT = MEDIA_DIR
+MEDIA_URL = '/media/'

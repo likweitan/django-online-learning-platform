@@ -39,31 +39,50 @@
                 {% endif %}
             </div>
         </div>
-        <div class="my-3 p-3 bg-body rounded shadow-sm">
-            <h6 class="border-bottom pb-2 mb-0">Question: {{ homework.homework_title }}</h6>
-            {% if homework %}
-            <div class="d-flex text-muted pt-3">
-                <p>{{ homework.homework_instruction }}</p>
-            </div>
-            {% else %}
-            <div class="d-flex text-muted pt-3">
-                <p>No homework are available.</p>
-            </div>
-            {% endif %}
-            <!--
+        <div class='container'>
+            <div class='row'>
+                <div class="col my-3 p-3 bg-body rounded shadow-sm">
+                    <h6 class="border-bottom pb-2 mb-0">Question: {{ homework.homework_title }}</h6>
+                    {% if homework %}
+                    <div class="d-flex text-muted pt-3">
+                        <p>{{ homework.homework_instruction }}</p>
+                    </div>
+                    {% else %}
+                    <div class="d-flex text-muted pt-3">
+                        <p>No homework are available.</p>
+                    </div>
+                    {% endif %}
+                    <!--
             <small class="d-block text-end mt-3">
                 <a href="#">All courses</a>
             </small>
             -->
-            <small class="d-block text-end mt-3">
-                Simplicity is the ultimate sophistication. 简单是最终的复杂性。
-            </small>
+                    <small class="d-block text-end mt-3">
+                        Due Date: {{ homework.homework_due_datetime }}
+                    </small>
+
+                </div>
+                <div class='col my-3 p-3 bg-body rounded shadow-sm'>
+                    {% load crispy_forms_tags %}
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <div>
+                            <div>
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                            </div>
+                            <br>
+                            <input class="btn btn-primary" type="submit" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
+
 
         <div class="my-3 p-3 bg-body rounded shadow-sm">
             <h6 class="border-bottom pb-2 mb-0">Submission</h6>
-            {% if homework_list %}
-            {% for homework in homework_list %}
+            {% if submission_list %}
+            {% for submission in submission_list %}
             <div class="d-flex text-muted pt-3">
                 <svg t="1618720297844" class="bd-placeholder-img flex-shrink-0 me-2 rounded" viewBox="0 0 1024 1024"
                     version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3898" width="32" height="32">
@@ -77,9 +96,9 @@
                 </svg>
                 <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
                     <div class="d-flex justify-content-between">
-                        <strong class="text-gray-dark"><a href="/courses/{{ course.id }}/homework/{{ homework.id }}/">
-                                {{ homework.homework_title }}</a></strong>
-                        Due Date: {{ homework.homework_due_datetime }}
+                        <strong class="text-gray-dark"><a href="{{ submission.submission_file_upload.url }}">
+                                {{ submission.submission_title }}</a></strong>
+                        Submitted on: {{ submission.homework_submission_updated_datetime }}
                     </div>
                     <span class="d-block">{{ homework.homework_description }}</span>
                 </div>
@@ -95,10 +114,8 @@
                 <a href="#">All courses</a>
             </small>
             -->
-            <small class="d-block text-end mt-3">
-                Simplicity is the ultimate sophistication. 简单是最终的复杂性。
-            </small>
         </div>
+
 
     </main>
 </body>
