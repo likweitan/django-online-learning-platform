@@ -13,7 +13,8 @@ application in this directory:
 
 ## Example screenshot
 
-![signin](https://user-images.githubusercontent.com/11171910/116688053-b63eae00-a9e8-11eb-83cf-10847aafe978.png)
+![Login Page](https://user-images.githubusercontent.com/11171910/116688053-b63eae00-a9e8-11eb-83cf-10847aafe978.png)
+![Home Page](https://user-images.githubusercontent.com/11171910/116688198-ec7c2d80-a9e8-11eb-9d2d-28dc2ed67d09.png)
 
 # Compatibility
 * Python 3.8
