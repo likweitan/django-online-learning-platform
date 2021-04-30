@@ -25,6 +25,11 @@ application in this directory:
 
 ![Home Page](https://user-images.githubusercontent.com/11171910/116688198-ec7c2d80-a9e8-11eb-9d2d-28dc2ed67d09.png)
 
+### Course Page
+
+![image](https://user-images.githubusercontent.com/11171910/116688566-788e5500-a9e9-11eb-819d-e363f8fffd45.png)
+
+
 # Compatibility
 * Python 3.8
 * PostgreSQL Preferred
