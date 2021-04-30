@@ -15,6 +15,8 @@ application in this directory:
 
 ### Login Page
 
+- Create a superuser before you could login
+
 ![Login Page](https://user-images.githubusercontent.com/11171910/116688053-b63eae00-a9e8-11eb-83cf-10847aafe978.png)
 
 ### Home Page
