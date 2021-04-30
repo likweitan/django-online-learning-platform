@@ -18,9 +18,8 @@ from django.urls import include, path
 from django.conf.urls import url
 
 from page.views import home_view, update_view
-from courses.views import courses_view, course_view, homeworks_view, homework_submission_view
+from courses.views import courses_view, course_view, homeworks_view, homework_submission_view, tests_view
 from user.views import login_view
-
 
 from django.conf.urls.static import static
 from django.conf import settings
@@ -36,6 +35,7 @@ urlpatterns = [
          homeworks_view, name='homeworks'),
     path('courses/<int:course_id>/homework/<int:homework_id>/',
          homework_submission_view, name='homework_submission'),
+    path('courses/<int:course_id>/tests/', tests_view, name='tests')
 ]
 
 # Add Django site authentication urls (for login, logout, password management)

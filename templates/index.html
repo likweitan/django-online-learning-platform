@@ -65,10 +65,53 @@
       </div>
       {% endfor %}
       {% else %}
-      <p>No update are available.</p>
+      <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+        <div class="d-flex justify-content-between">
+          <br>
+          No update are available yet.
+        </div>
+        <span class="d-block">{{ update.update_description }}</span>
+      </div>
       {% endif %}
       <small class="d-block text-end mt-3">
         <a href="/updates/">All updates</a>
+      </small>
+    </div>
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+      <h6 class="border-bottom pb-2 mb-0">Recent courses</h6>
+      {% if course_list %}
+      {% for course in course_list %}
+      <div class="d-flex text-muted pt-3">
+        <svg t="1618720297844" class="bd-placeholder-img flex-shrink-0 me-2 rounded" viewBox="0 0 1024 1024"
+          version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3898" width="32" height="32">
+          <path d="M1024 1024H0V0h1024v1024zM64 960h896V64H64v896z" fill="#FD5C3F" p-id="3899"></path>
+          <path d="M32 128h960v64H32zM288 416h64v320H288zM640 653.248l-96-96V416h64v114.752l32 32 32-32V416h64v141.248z"
+            fill="#FD5C3F" p-id="3900"></path>
+          <path
+            d="M429.248 608H320v-64h82.752l13.248-13.248v-37.504L402.752 480H320v-64h109.248L480 466.752v90.496zM608 608h64v128h-64z"
+            fill="#FD5C3F" p-id="3901"></path>
+        </svg>
+        <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+          <div class="d-flex justify-content-between">
+            <strong class="text-gray-dark"><a href="/courses/{{ course.id }}/">
+                {{ course.course_name }}</a></strong>
+            Instructor导师: {{ course.instructor.last_name }} {{ course.instructor.first_name }}
+          </div>
+          <span class="d-block">{{ course.course_description }}</span>
+        </div>
+      </div>
+      {% endfor %}
+      {% else %}
+      <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+        <div class="d-flex justify-content-between">
+          <br>
+          No course are available yet.
+        </div>
+        <span class="d-block">{{ update.update_description }}</span>
+      </div>
+      {% endif %}
+      <small class="d-block text-end mt-3">
+        <a href="/courses/">All courses</a>
       </small>
     </div>
   </main>

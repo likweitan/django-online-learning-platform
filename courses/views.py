@@ -5,8 +5,8 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import path
 
 from django.contrib.auth.decorators import login_required
-from .models import Course, Homework, HomeworkSubmission
-from .forms import DocumentForm
+from .models import Course, Homework, HomeworkSubmission, Test
+from .forms import DocumentForm, NewHomeworkForm
 from django.core.files.storage import FileSystemStorage
 
 from django.contrib.auth.models import User
@@ -32,8 +32,32 @@ def course_view(request, course_id):
 def homeworks_view(request, course_id):
     #course_list = Course.objects.all()
     course = get_object_or_404(Course, pk=course_id)
-    homework_list = Homework.objects.all().filter(course_id=course_id)
-    context = {'course': course, 'homework_list': homework_list}
+    homework_list = Homework.objects.all().filter(
+        course_id=course_id).order_by('-homework_updated_datetime')
+
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = NewHomeworkForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as requir
+            homework_title = form.cleaned_data['homework_title']
+            homework_description = form.cleaned_data['homework_description']
+            homework_instruction = form.cleaned_data['homework_instruction']
+            homework_due_date = form.cleaned_data['homework_due_date']
+            homework = Homework(course_id=course_id, homework_title=homework_title,
+                                homework_description=homework_description, homework_instruction=homework_instruction, homework_due_date=homework_due_date)
+            homework.save()
+            form = NewHomeworkForm()
+            # redirect to a new URL:
+            # return HttpResponseRedirect('/thanks/')
+            context = {'course': course,
+                       'homework_list': homework_list, 'form': form}
+            return render(request, 'courses/homework.html', context)
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = NewHomeworkForm()
+    context = {'course': course, 'homework_list': homework_list, 'form': form}
     return render(request, 'courses/homework.html', context)
 
 
@@ -76,3 +100,11 @@ def homework_submission_view(request, course_id, homework_id):
                'submission_list': submission_list}
 
     return render(request, 'courses/submission.html', context)
+
+
+@login_required
+def tests_view(request, course_id):  # *args, **kwargs
+    test_list = Test.objects.all().filter(course=course_id)
+    context = {'test_list': test_list}
+    # return HttpResponse("<h1>Hello World</h1>") # string of HTML code
+    return render(request, 'tests/index.html', context)

@@ -34,7 +34,7 @@ class Homework(models.Model):
     homework_title = models.CharField(max_length=200)
     homework_description = models.TextField(max_length=200)
     homework_instruction = models.TextField()
-    homework_due_datetime = models.DateTimeField(null=True)
+    homework_due_date = models.DateField(null=True)
     homework_created_datetime = models.DateTimeField(auto_now_add=True)
     homework_updated_datetime = models.DateTimeField(auto_now=True)
 
@@ -77,8 +77,12 @@ class Test(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     test_title = models.CharField(max_length=200)
     test_description = models.CharField(max_length=200)
-    test_due_date = models.DateField()
-    content_created_datetime = models.DateTimeField(auto_now_add=True)
+    test_instruction = models.TextField()
+    test_start_time = models.TimeField()
+    test_start_date = models.DateField()
+    test_end_time = models.TimeField()
+    test_end_date = models.DateField()
+    test_created_datetime = models.DateTimeField(auto_now_add=True)
 
 
 class User(models.Model):

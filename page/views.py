@@ -5,14 +5,15 @@ from django.shortcuts import render
 from django.urls import path
 
 from django.contrib.auth.decorators import login_required
-from .models import Update
+from .models import Update, Course
 from django.contrib.auth.models import User, Group
 
 
 @login_required
 def home_view(request, *args, **kwargs):  # *args, **kwargs
     update_list = Update.objects.all()
-    context = {'update_list': update_list}
+    course_list = Course.objects.all()
+    context = {'update_list': update_list, 'course_list': course_list}
     # return HttpResponse("<h1>Hello World</h1>") # string of HTML code
     return render(request, "index.html", context)
 

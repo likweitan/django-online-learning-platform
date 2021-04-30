@@ -57,16 +57,36 @@
             </div>
             {% endfor %}
             {% else %}
-            <p>No course are available.</p>
+            <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+                <div class="d-flex justify-content-between">
+                    <br>
+                    No course are available yet.
+                </div>
+                <span class="d-block">{{ update.update_description }}</span>
+            </div>
             {% endif %}
             <!--
             <small class="d-block text-end mt-3">
                 <a href="#">All courses</a>
             </small>
             -->
+            {% if user.is_staff %}
             <small class="d-block text-end mt-3">
-                Simplicity is the ultimate sophistication. 简单是最终的复杂性。
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">New course</button>
             </small>
+            <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom"
+                aria-labelledby="offcanvasBottomLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasBottomLabel">New course</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body small">
+                    ...
+                </div>
+            </div>
+            {% endif %}
         </div>
 
     </main>

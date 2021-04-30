@@ -58,7 +58,7 @@
                     <div class="d-flex justify-content-between">
                         <strong class="text-gray-dark"><a href="/courses/{{ course.id }}/homework/{{ homework.id }}/">
                                 {{ homework.homework_title }}</a></strong>
-                        Due Date: {{ homework.homework_due_datetime }}
+                        Due Date: {{ homework.homework_due_date }}
                     </div>
                     <span class="d-block">{{ homework.homework_description }}</span>
                 </div>
@@ -69,14 +69,33 @@
                 <p>No homework are available.</p>
             </div>
             {% endif %}
-            <!--
+            {% if user.is_staff %}
             <small class="d-block text-end mt-3">
-                <a href="#">All courses</a>
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">New homework</button>
             </small>
-            -->
-            <small class="d-block text-end mt-3">
-                Simplicity is the ultimate sophistication. 简单是最终的复杂性。
-            </small>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasBottom"
+                aria-labelledby="offcanvasBottomLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasBottomLabel">New homework</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body small">
+                    {% load crispy_forms_tags %}
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <div>
+                            <div>
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                            </div>
+                            <br>
+                            <input class="btn btn-primary" type="submit" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% endif %}
         </div>
 
     </main>

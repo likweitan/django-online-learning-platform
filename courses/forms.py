@@ -9,6 +9,17 @@ class ModelFormWithFileField(forms.Form):
     submission_file_upload = forms.FileField()
 
 
+class NewHomeworkForm(forms.Form):
+    homework_title = forms.CharField(max_length=200)
+    homework_description = forms.CharField(max_length=200)
+    homework_instruction = forms.CharField(widget=forms.Textarea)
+    homework_due_date = forms.DateField(
+        widget=forms.TextInput(
+            attrs={'type': 'date'}
+        )
+    )
+
+
 class DocumentForm(ModelForm):
     submission_description = forms.CharField(
         widget=forms.Textarea, required=False)

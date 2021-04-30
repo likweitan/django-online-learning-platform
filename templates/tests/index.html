@@ -32,9 +32,9 @@
     <main class="container">
 
         <div class="my-3 p-3 bg-body rounded shadow-sm">
-            <h6 class="border-bottom pb-2 mb-0">All Updates</h6>
-            {% if update_list %}
-            {% for update in update_list %}
+            <h6 class="border-bottom pb-2 mb-0">All Courses</h6>
+            {% if test_list %}
+            {% for test in test_list %}
             <div class="d-flex text-muted pt-3">
                 <svg t="1618720297844" class="bd-placeholder-img flex-shrink-0 me-2 rounded" viewBox="0 0 1024 1024"
                     version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3898" width="32" height="32">
@@ -48,11 +48,11 @@
                 </svg>
                 <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
                     <div class="d-flex justify-content-between">
-                        <strong class="text-gray-dark"><a href="/updates/{{ update.id }}/">
-                                {{ update.update_title }}</a></strong>
-                        {{ update.update_created_datetime }}
+                        <strong class="text-gray-dark"><a href="/tests/{{ test.id }}/">
+                                {{ test.test_title }}</a></strong>
+                        Instructor导师: {{ test.instructor.last_name }} {{ test.instructor.first_name }}
                     </div>
-                    <span class="d-block">{{ update.update_description }}</span>
+                    <span class="d-block">{{ test.test_description }}</span>
                 </div>
             </div>
             {% endfor %}
@@ -60,7 +60,7 @@
             <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
                 <div class="d-flex justify-content-between">
                     <br>
-                    No update are available
+                    No test are available yet.
                 </div>
                 <span class="d-block">{{ update.update_description }}</span>
             </div>
@@ -73,12 +73,12 @@
             {% if user.is_staff %}
             <small class="d-block text-end mt-3">
                 <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">New update</button>
+                    data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">New test</button>
             </small>
             <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom"
                 aria-labelledby="offcanvasBottomLabel">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasBottomLabel">Offcanvas bottom</h5>
+                    <h5 class="offcanvas-title" id="offcanvasBottomLabel">New test</h5>
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                         aria-label="Close"></button>
                 </div>
