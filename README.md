@@ -11,6 +11,10 @@ application in this directory:
     $ python manage.py migrate
     $ python manage.py runserver
 
+## Example screenshot
+
+![signin](https://user-images.githubusercontent.com/11171910/116688053-b63eae00-a9e8-11eb-83cf-10847aafe978.png)
+
 # Compatibility
 * Python 3.8
 * SQLite, PostgreSQL, MySQL
