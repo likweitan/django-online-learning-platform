@@ -41,6 +41,7 @@ def homeworks_view(request, course_id):
 
 @login_required
 def homework_submission_view(request, course_id, homework_id):
+    course = get_object_or_404(Course, pk=course_id)
     homework = get_object_or_404(Homework, id=homework_id)
     submission_list = HomeworkSubmission.objects.all().filter(
         homework_id=homework_id, user=request.user.id).order_by('-homework_submission_updated_datetime')
@@ -60,7 +61,7 @@ def homework_submission_view(request, course_id, homework_id):
             form.homework = homework_id
             form.save()
             form = DocumentForm()
-            context = {'homework': homework, 'form': form,
+            context = {'course': course, 'homework': homework, 'form': form,
                        'submission_list': submission_list}
             # redirect to a new URL:
             return render(request, 'courses/submission.html', context)
@@ -69,7 +70,7 @@ def homework_submission_view(request, course_id, homework_id):
     else:
         form = DocumentForm()
 
-    context = {'homework': homework, 'form': form,
+    context = {'course': course, 'homework': homework, 'form': form,
                'submission_list': submission_list}
 
     return render(request, 'courses/submission.html', context)

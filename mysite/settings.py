@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-=a382e8_wxcv0t5$&v^kw&hzv*!c%u!ak(7g@m$8fvino!^s0&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['server.railgun.codes', '192.168.0.119']
+ALLOWED_HOSTS = ['server.railgun.codes', '192.168.0.119', '127.0.0.1']
 
 
 # Application definition
