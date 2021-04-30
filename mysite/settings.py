@@ -93,13 +93,13 @@ DATABASES = {
 
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-        'NAME': 'rpvcbzns',
+        'NAME': 'online-learning-platform',
 
-        'USER': 'rpvcbzns',
+        'USER': 'postgres',
 
-        'PASSWORD': 'bxmLucZRCvn_DUiSvn0Xhruy1tQqbbEQ',
+        'PASSWORD': 'admin',
 
-        'HOST': 'rosie.db.elephantsql.com',
+        'HOST': '127.0.0.1',
 
         'PORT': '5432',
 
