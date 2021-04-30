@@ -32,9 +32,9 @@
     <main class="container">
 
         <div class="my-3 p-3 bg-body rounded shadow-sm">
-            <h6 class="border-bottom pb-2 mb-0">All Courses</h6>
-            {% if course_list %}
-            {% for course in course_list %}
+            <h6 class="border-bottom pb-2 mb-0">All Updates</h6>
+            {% if update_list %}
+            {% for update in update_list %}
             <div class="d-flex text-muted pt-3">
                 <svg t="1618720297844" class="bd-placeholder-img flex-shrink-0 me-2 rounded" viewBox="0 0 1024 1024"
                     version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3898" width="32" height="32">
@@ -48,25 +48,22 @@
                 </svg>
                 <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
                     <div class="d-flex justify-content-between">
-                        <strong class="text-gray-dark"><a href="/courses/{{ course.id }}/">
-                                {{ course.course_name }}</a></strong>
-                        Instructor导师: {{ course.instructor.last_name }} {{ course.instructor.first_name }}
+                        <strong class="text-gray-dark"><a href="/updates/{{ update.id }}/">
+                                {{ update.update_title }}</a></strong>
+                        {{ update.update_created_datetime }}
                     </div>
-                    <span class="d-block">{{ course.course_description }}</span>
+                    <span class="d-block">{{ update.update_description }}</span>
                 </div>
             </div>
             {% endfor %}
             {% else %}
-            <p>No course are available.</p>
+            <p>No update are available.</p>
             {% endif %}
             <!--
             <small class="d-block text-end mt-3">
                 <a href="#">All courses</a>
             </small>
             -->
-            <small class="d-block text-end mt-3">
-                Simplicity is the ultimate sophistication. 简单是最终的复杂性。
-            </small>
         </div>
 
     </main>

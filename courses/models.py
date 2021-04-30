@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 import os
 from uuid import uuid4
+from django.utils.deconstruct import deconstructible
 # Create your models here.
 
 
@@ -38,18 +39,18 @@ class Homework(models.Model):
     homework_updated_datetime = models.DateTimeField(auto_now=True)
 
 
-def path_and_rename(path):
-    def wrapper(instance, filename):
+@deconstructible
+class path_and_rename(object):
+
+    def __init__(self, sub_path):
+        self.path = sub_path
+
+    def __call__(self, instance, filename):
         ext = filename.split('.')[-1]
-        # get filename
-        if instance.pk:
-            filename = '{}.{}'.format(instance.pk, ext)
-        else:
-            # set filename as random string
-            filename = '{}.{}'.format(uuid4().hex, ext)
+        # set filename as random string
+        filename = '{}.{}'.format(uuid4().hex, ext)
         # return the whole path to the file
-        return os.path.join(path, filename)
-    return wrapper
+        return os.path.join(self.path, filename)
 
 
 class HomeworkSubmission(models.Model):
@@ -59,7 +60,7 @@ class HomeworkSubmission(models.Model):
     )
     homework = models.ForeignKey(Homework, on_delete=models.CASCADE)
     submission_title = models.CharField(max_length=200)
-    submission_description = models.TextField(max_length=200)
+    submission_description = models.TextField(max_length=200, null=True)
     submission_file_upload = models.FileField(
         upload_to=path_and_rename('documents/'))
     homework_submission_updated_datetime = models.DateTimeField(

@@ -10,6 +10,9 @@ class ModelFormWithFileField(forms.Form):
 
 
 class DocumentForm(ModelForm):
+    submission_description = forms.CharField(
+        widget=forms.Textarea, required=False)
+
     class Meta:
         model = HomeworkSubmission
         fields = ['submission_title', 'submission_description',

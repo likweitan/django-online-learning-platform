@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls import url
 
-from page.views import home_view
+from page.views import home_view, update_view
 from courses.views import courses_view, course_view, homeworks_view, homework_submission_view
 from user.views import login_view
 
@@ -29,6 +29,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #path('user/', include('user.urls')),
     path('', home_view, name='home'),
+    path('updates/', update_view, name='updates'),
     path('courses/', courses_view, name='courses'),
     path('courses/<int:course_id>/', course_view, name='course'),
     path('courses/<int:course_id>/homework/',

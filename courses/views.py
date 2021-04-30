@@ -14,8 +14,6 @@ from django.contrib.auth.models import User
 
 @login_required
 def courses_view(request, *args, **kwargs):  # *args, **kwargs
-    print(args, kwargs)
-    print(request.user)
     course_list = Course.objects.all()
     context = {'course_list': course_list}
     # return HttpResponse("<h1>Hello World</h1>") # string of HTML code
