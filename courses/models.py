@@ -63,8 +63,14 @@ class HomeworkSubmission(models.Model):
     submission_description = models.TextField(max_length=200, null=True)
     submission_file_upload = models.FileField(
         upload_to=path_and_rename('documents/'))
+    submission_result = models.FloatField(null=True)
+    submission_comment = models.CharField(max_length=200, null=True)
     homework_submission_updated_datetime = models.DateTimeField(
         auto_now_add=True)
+
+    def filename(self):
+        base = os.path.basename(self.submission_file_upload.name)
+        return os.path.splitext(base)[0]
 
 
 class Test(models.Model):

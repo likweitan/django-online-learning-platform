@@ -41,8 +41,12 @@ def homeworks_view(request, course_id):
 def homework_submission_view(request, course_id, homework_id):
     course = get_object_or_404(Course, pk=course_id)
     homework = get_object_or_404(Homework, id=homework_id)
-    submission_list = HomeworkSubmission.objects.all().filter(
-        homework_id=homework_id, user=request.user.id).order_by('-homework_submission_updated_datetime')
+    if not request.user.is_staff:
+        submission_list = HomeworkSubmission.objects.all().filter(
+            homework_id=homework_id, user=request.user.id).order_by('-homework_submission_updated_datetime')
+    else:
+        submission_list = HomeworkSubmission.objects.all().filter(
+            homework_id=homework_id).order_by('-homework_submission_updated_datetime')
     # If this is a POST request then process the Form data
     if request.method == 'POST':
 

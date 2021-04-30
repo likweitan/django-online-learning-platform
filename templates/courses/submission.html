@@ -63,6 +63,7 @@
 
                 </div>
                 <div class='col my-3 p-3 bg-body rounded shadow-sm'>
+                    {% if not request.user.is_staff %}
                     {% load crispy_forms_tags %}
                     <form action="" method="post" enctype="multipart/form-data">
                         <div>
@@ -74,6 +75,11 @@
                             <input class="btn btn-primary" type="submit" value="Submit">
                         </div>
                     </form>
+                    {% else %}
+                    <div>
+                        <a>Analysis coming soon</a>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -84,23 +90,21 @@
             {% if submission_list %}
             {% for submission in submission_list %}
             <div class="d-flex text-muted pt-3">
-                <svg t="1618720297844" class="bd-placeholder-img flex-shrink-0 me-2 rounded" viewBox="0 0 1024 1024"
-                    version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3898" width="32" height="32">
-                    <path d="M1024 1024H0V0h1024v1024zM64 960h896V64H64v896z" fill="#FD5C3F" p-id="3899"></path>
-                    <path
-                        d="M32 128h960v64H32zM288 416h64v320H288zM640 653.248l-96-96V416h64v114.752l32 32 32-32V416h64v141.248z"
-                        fill="#FD5C3F" p-id="3900"></path>
-                    <path
-                        d="M429.248 608H320v-64h82.752l13.248-13.248v-37.504L402.752 480H320v-64h109.248L480 466.752v90.496zM608 608h64v128h-64z"
-                        fill="#FD5C3F" p-id="3901"></path>
-                </svg>
+                <a href="{{ submission.submission_file_upload.url }}"><svg t="1619761345701"
+                        class="bd-placeholder-img flex-shrink-0 me-2 rounded" viewBox="0 0 1024 1024" version="1.1"
+                        xmlns="http://www.w3.org/2000/svg" p-id="2613" width="32" height="32">
+                        <path
+                            d="M512 1024C229.236364 1024 0 794.763636 0 512S229.236364 0 512 0s512 229.236364 512 512-229.236364 512-512 512z m0-938.682182A426.635636 426.635636 0 0 0 85.317818 512 426.635636 426.635636 0 0 0 512 938.682182 426.635636 426.635636 0 0 0 938.682182 512 426.635636 426.635636 0 0 0 512 85.317818z m36.352 625.570909a45.242182 45.242182 0 0 1-21.085091 11.264l-0.139636 0.093091a46.08 46.08 0 0 1-51.246546-9.355636l-163.653818-163.700364a46.266182 46.266182 0 1 1 65.442909-65.442909l91.694546 91.694546V298.682182a42.682182 42.682182 0 0 1 85.317818 0v274.990545l91.834182-91.880727a46.359273 46.359273 0 0 1 65.442909 65.489455l-163.607273 163.653818z"
+                            fill="#1C3743" p-id="2614"></path>
+                    </svg></a>
                 <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
                     <div class="d-flex justify-content-between">
-                        <strong class="text-gray-dark"><a href="{{ submission.submission_file_upload.url }}">
-                                {{ submission.submission_title }}</a></strong>
+                        <strong class="text-gray-dark">
+                            {{ submission.user }} - {{ submission.filename }}</strong>
                         Submitted on: {{ submission.homework_submission_updated_datetime }}
                     </div>
                     <span class="d-block">{{ homework.homework_description }}</span>
+
                 </div>
             </div>
             {% endfor %}

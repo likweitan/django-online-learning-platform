@@ -6,6 +6,7 @@ from django.urls import path
 
 from django.contrib.auth.decorators import login_required
 from .models import Update
+from django.contrib.auth.models import User, Group
 
 
 @login_required
