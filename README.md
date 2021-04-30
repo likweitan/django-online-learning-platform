@@ -19,6 +19,8 @@ application in this directory:
 
 ### Home Page
 
+- Show recent updates and courses to the users
+
 ![Home Page](https://user-images.githubusercontent.com/11171910/116688198-ec7c2d80-a9e8-11eb-9d2d-28dc2ed67d09.png)
 
 # Compatibility
