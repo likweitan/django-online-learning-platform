@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,12 +25,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=a382e8_wxcv0t5$&v^kw&hzv*!c%u!ak(7g@m$8fvino!^s0&'
-
+SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['server.railgun.codes', '192.168.0.119', '127.0.0.1']
+ALLOWED_HOSTS = ['classroomr.herokuapp.com','classroom.likweitan.tech', '192.168.0.119', '127.0.0.1']
 
 
 # Application definition
@@ -87,19 +91,24 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 #     }
 # }
 
+DATABASE_NAME = os.getenv('DATABASE_NAME')
+DATABASE_USER = os.getenv('DATABASE_USER')
+DATABASE_PASSWORD = os.getenv('DATABASE_PASSWORD')
+DATABASE_HOST = os.getenv('DATABASE_HOST')
+
 DATABASES = {
 
     'default': {
 
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-        'NAME': 'online-learning-platform',
+        'NAME': 'dd8mavr6ngslof',
 
-        'USER': 'postgres',
+        'USER': 'rhulnwwjhgqvca',
 
-        'PASSWORD': 'admin',
+        'PASSWORD': 'd3579601c917b62dd21ffabbe703c357fd1d12998bd2008b6ef1c48a58b9fd79',
 
-        'HOST': '127.0.0.1',
+        'HOST': 'ec2-18-214-140-149.compute-1.amazonaws.com',
 
         'PORT': '5432',
 
